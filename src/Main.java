@@ -46,10 +46,8 @@ public class Main {
     }
 
     private static GameProgress openProgress(String path) {
-        try (ObjectInputStream ois =
-                     new ObjectInputStream(new FileInputStream(path))) {
-            GameProgress loadedGame = (GameProgress) ois.readObject();
-            return loadedGame;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path))) {
+            return (GameProgress) ois.readObject();
         } catch (Exception e) {
             System.out.println("Ошибка открытия прогресса - " + e.getMessage());
             return null;
